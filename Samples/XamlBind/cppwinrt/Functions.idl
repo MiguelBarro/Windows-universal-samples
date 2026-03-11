@@ -1,0 +1,38 @@
+namespace SDKTemplate
+{
+    runtimeclass ColorEntry
+    {
+        ColorEntry();
+
+        String ColorName;
+        Windows.UI.Color Color;
+
+        static Windows.UI.Xaml.Media.SolidColorBrush Brushify(Windows.UI.Color c);
+    };
+
+    [default_interface]
+    runtimeclass Functions : Windows.UI.Xaml.Controls.Page
+    {
+        Functions();
+
+        Windows.Foundation.Collections.IObservableVector<ColorEntry> ColorEntries { get; };
+        xBindSampleModel.DataModel Model { get; };
+        Windows.UI.Xaml.Controls.Slider RedSlider {get;};
+        Windows.UI.Xaml.Controls.Slider GreenSlider {get;};
+        Windows.UI.Xaml.Controls.Slider BlueSlider {get;};
+
+        String GetTime();
+        String Display(String stringArg, UInt32 intArg, Double floatArg, Boolean boolArg);
+        String countVowels(String words);
+        Windows.UI.Xaml.Media.SolidColorBrush MakeColor(Double red, Double green, Double blue);
+        String ColorValue(Double red, Double green, Double blue);
+        Windows.UI.Xaml.Visibility ShowPlaceholder(UInt32 count);
+        void ProcessColor(String value);
+        void PopulateColorsClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void ClearColorsClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void UpdateValuesClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void ResetValuesClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+
+        static Windows.UI.Xaml.Media.SolidColorBrush TextColor(Windows.UI.Color c);
+    };
+}

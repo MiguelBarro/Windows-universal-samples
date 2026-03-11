@@ -1,0 +1,31 @@
+namespace SDKTemplate
+{
+    enum NotifyType
+    {
+        StatusMessage,
+        ErrorMessage
+    };
+
+    [default_interface]
+    runtimeclass Scenario
+    {
+        String Title;
+        String Description;
+        String ClassName;
+
+        Scenario(String title, String description, String className);
+    };
+
+    [default_interface]
+    runtimeclass MainPage : Windows.UI.Xaml.Controls.Page
+    {
+        MainPage();
+
+        static String FEATURE_NAME{ get; };
+        static Windows.Foundation.Collections.IVector<Scenario> scenarios{ get; };
+
+        void ScenarioControl_SelectionChanged(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void Footer_Click(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void Button_Click(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+    };
+}

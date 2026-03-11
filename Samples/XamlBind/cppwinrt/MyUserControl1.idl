@@ -1,0 +1,12 @@
+namespace SDKTemplate
+{
+    [default_interface]
+    runtimeclass MyUserControl1
+        : Windows.UI.Xaml.Controls.UserControl
+        , Windows.UI.Xaml.Data.INotifyPropertyChanged
+    {
+        MyUserControl1();
+
+        String NonDPProperty;
+    };
+}
