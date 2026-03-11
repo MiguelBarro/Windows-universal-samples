@@ -1,0 +1,19 @@
+namespace SDKTemplate
+{
+    [default_interface]
+    runtimeclass OtherBindings : Windows.UI.Xaml.Controls.Page
+    {
+        OtherBindings();
+
+        xBindSampleModel.DataModel Model { get; };
+        Int32 MyInt;
+        xBindSampleModel.IEmployee NullEmployee { get; };
+        Windows.UI.Xaml.Controls.TextBox LocalTextBox { get; };
+        Windows.UI.Xaml.Controls.Slider OneTimeSlider3 { get; };
+        Windows.UI.Xaml.Controls.Grid Grid1 { get; };
+
+        void UpdateValuesClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void ResetValuesClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void UndeferElementClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+    };
+}

@@ -1,0 +1,13 @@
+namespace SDKTemplate
+{
+    [default_interface]
+    runtimeclass ListsAndTemplates : Windows.UI.Xaml.Controls.Page
+    {
+        ListsAndTemplates();
+
+        xBindSampleModel.DataModel Model { get; };
+        
+        void UpdateValuesClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void ResetValuesClick(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+    };
+}

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Assets">
+      <UniqueIdentifier>80bfd669-aa83-4537-9611-027cffe0d8af</UniqueIdentifier>
+      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
+    </Filter>
+    <Filter Include="Styles">
+      <UniqueIdentifier>{c6978fb6-bc64-498d-97c8-f5b53997e54e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="MainPage.cpp" />
+    <ClCompile Include="BasicTests.cpp" />
+    <ClCompile Include="EventTests.cpp" />
+    <ClCompile Include="ListsAndTemplates.cpp" />
+    <ClCompile Include="MyUserControl1.cpp" />
+    <ClCompile Include="OtherBindings.cpp" />
+    <ClCompile Include="PhasingTests.cpp" />
+    <ClCompile Include="Templates.cpp" />
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.h" />
+    <ClInclude Include="MainPage.h" />
+    <ClInclude Include="BasicTests.h" />
+    <ClInclude Include="EventTests.h" />
+    <ClInclude Include="ListsAndTemplates.h" />
+    <ClInclude Include="MyUserControl1.h" />
+    <ClInclude Include="OtherBindings.h" />
+    <ClInclude Include="PhasingTests.h" />
+    <ClInclude Include="Templates.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+    <Page Include="Styles\Styles.xaml">
+      <Filter>Styles</Filter>
+    </Page>
+    <Page Include="BasicTests.xaml" />
+    <Page Include="EventTests.xaml" />
+    <Page Include="ListsAndTemplates.xaml" />
+    <Page Include="OtherBindings.xaml" />
+    <Page Include="PhasingTests.xaml" />
+    <Page Include="Templates.xaml" />
+    <Page Include="MyUserControl1.xaml" />
+    <Page Include="Functions.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="$(SharedContentDir)\media\smalltile-sdk.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\splash-sdk.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\squaretile-sdk.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\storelogo-sdk.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\tile-sdk.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\microsoft-sdk.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\windows-sdk.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+namespace SDKTemplate
+{
+    [default_interface]
+    runtimeclass Styles : Windows.UI.Xaml.ResourceDictionary
+    {
+        Styles();
+    };
+}

@@ -1,0 +1,14 @@
+namespace SDKTemplate
+{
+    [default_interface]
+    runtimeclass EventTests : Windows.UI.Xaml.Controls.Page
+    {
+        EventTests();
+
+        xBindSampleModel.DataModel Model { get; };
+
+        void Click_RegularArgs(IInspectable sender, Windows.UI.Xaml.RoutedEventArgs e);
+        void Click_NoArgs();
+        void Click_BaseArgs(IInspectable sender, IInspectable e);
+    };
+}
