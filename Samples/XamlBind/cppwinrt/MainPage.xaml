@@ -52,7 +52,7 @@
                         <Image x:Name="WindowsLogo" Stretch="None" Source="Assets/windows-sdk.png" Margin="0,15,0,0" />
                         <TextBlock x:Name="Header" Text="Windows platform sample" Style="{StaticResource TagLineTextStyle}" Margin="0,15,0,0" />
                     </StackPanel>
-                    <TextBlock x:Name="SampleTitle" Text="{x:Bind FEATURE_NAME}" Style="{StaticResource SampleHeaderTextStyle}" TextWrapping="Wrap" RelativePanel.Below="HeaderPanel" Margin="0,10,0,0"/>
+                    <TextBlock x:Name="SampleTitle" Text="{x:Bind local:MainPage.FEATURE_NAME}" Style="{StaticResource SampleHeaderTextStyle}" TextWrapping="Wrap" RelativePanel.Below="HeaderPanel" Margin="0,10,0,0"/>
                     <ListBox x:Name="ScenarioControl" SelectionChanged="ScenarioControl_SelectionChanged"
                  SelectionMode="Single" HorizontalAlignment="Left" Style="{StaticResource ScenarioListBoxStyle}"
                  VerticalAlignment="Top" RelativePanel.Below="SampleTitle" Margin="0,10,0,0" RelativePanel.Above="FooterPanel">
