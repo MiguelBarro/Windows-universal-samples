@@ -55,7 +55,7 @@ namespace winrt::SDKTemplate::implementation
     }
 
     void MainPage::OnNavigatedTo(
-            winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs const& e)
+            winrt::Windows::UI::Xaml::Navigation::NavigationEventArgs const&)
     {
         using namespace winrt::Windows::UI::Xaml;
 

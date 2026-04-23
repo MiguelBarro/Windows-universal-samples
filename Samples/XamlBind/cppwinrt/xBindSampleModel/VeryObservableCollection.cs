@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Collections;
 
-namespace BindTestbedModel
+namespace xBindSampleModel
 {
     internal class VeryObservableCollection<T> : INotifyCollectionChanged, IList<T>, Windows.Foundation.Collections.IObservableVector<T>, IList
     {
@@ -30,7 +30,7 @@ namespace BindTestbedModel
         {
             if (VectorChanged != null)
             {
-                VectorChangedEventAgrs args = new VectorChangedEventAgrs();
+                VectorChangedEventArgs args = new VectorChangedEventArgs();
                 args.CollectionChange = CollectionChange.Reset;
                 VectorChanged(this, args);
             }

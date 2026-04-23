@@ -1,6 +1,8 @@
 #pragma once
 #include "PhasingTests.g.h"
 
+#include <winrt/Microsoft.UI.Xaml.h>
+
 namespace winrt::SDKTemplate::implementation
 {
     struct PhasingTests : PhasingTestsT<PhasingTests>

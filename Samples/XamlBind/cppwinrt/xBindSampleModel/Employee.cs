@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace xBindSampleModel
 {
-    internal class Employee : IEmployee
+    internal partial class Employee : IEmployee
     {
         private string _FirstName;
         private string _LastName;
@@ -28,7 +28,7 @@ namespace xBindSampleModel
             get { return null; }
             set { }
         }
-        public Windows.UI.Xaml.Media.ImageSource NullImageSource
+        public Microsoft.UI.Xaml.Media.ImageSource NullImageSource
         {
             get { return null; }
             set { }

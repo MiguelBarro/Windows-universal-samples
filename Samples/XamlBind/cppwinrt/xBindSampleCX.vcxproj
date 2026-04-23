@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <ItemGroup Label="Dependencies">
-        <PackageReference Include="Microsoft.Windows.CppWinRT" Version="2.0.250303.1" GeneratePathProperty="true">
-            <IncludeAssets>native</IncludeAssets>
-        </PackageReference>
+        <PackageReference Include="Microsoft.Windows.CppWinRT" Version="2.0.250303.1"/>
+        <ProjectReference Include="xBindSampleModel\xBindSampleModel.csproj">
+          <Project>{9A4C4F31-5B34-5ED3-BEC4-C0EF40B07827}</Project>
+        </ProjectReference>
     </ItemGroup>
-    <Import Project="obj\xBindSampleCX.vcxproj.nuget.g.props" Condition="Exists('obj\xBindSampleCX.vcxproj.nuget.g.props')" />
-    <Import Project="$(PkgMicrosoft_Windows_CppWinRT)/build/native/Microsoft.Windows.CppWinRT.props"
-        Condition="Exists('$(PkgMicrosoft_Windows_CppWinRT)/build/native/Microsoft.Windows.CppWinRT.props')" />
     <PropertyGroup>
         <SharedContentDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), LICENSE))\SharedContent</SharedContentDir>
     </PropertyGroup>
@@ -23,11 +21,13 @@
         <AppContainerApplication>true</AppContainerApplication>
         <ApplicationType>Windows Store</ApplicationType>
         <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-        <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.26100.0</WindowsTargetPlatformVersion>
+        <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
         <WindowsTargetPlatformMinVersion>10.0.22621.0</WindowsTargetPlatformMinVersion>
+        <!-- Allow NuGet to resolve .NET WinRT component references from this native C++ project -->
+        <AssetTargetFallback>net8.0-windows10.0.26100.0</AssetTargetFallback>
     </PropertyGroup>
     <PropertyGroup Label="NuGet">
-        <ResolveNuGetPackages>false</ResolveNuGetPackages>
+        <ResolveNuGetPackages>true</ResolveNuGetPackages>
         <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
         <NuGetTargetMoniker>native,Version=v0.0</NuGetTargetMoniker>
         <NuGetTargetPlatformIdentifier>Windows</NuGetTargetPlatformIdentifier>
@@ -97,6 +97,10 @@
         <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     </ImportGroup>
     <PropertyGroup Label="UserMacros" />
+    <PropertyGroup Label="Configuration">
+        <ConfigurationType>Application</ConfigurationType>
+        <CharacterSet>Unicode</CharacterSet>
+    </PropertyGroup>
     <ItemDefinitionGroup>
         <ClCompile>
             <PrecompiledHeader>Use</PrecompiledHeader>
@@ -248,10 +252,32 @@
         </ClCompile>
         <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     </ItemGroup>
+    <Target Name="DeduplicateReferencePath" BeforeTargets="ResolveReferences">
+      <!-- 1. Project ReferencePath to filenames -->
+      <ItemGroup>
+          <_RefFileName Include="@(ReferencePath->'%(Filename)%(Extension)')"
+                        Condition="'%(WinMDFile)' == 'true'"
+                        Original="%(ReferencePath.Identity)" />
+      </ItemGroup>
+      <!-- 2. Remove duplicates based on filename -->
+      <RemoveDuplicates Inputs="@(_RefFileName)">
+        <Output TaskParameter="Filtered" ItemName="_UniqueRefFileName" />
+      </RemoveDuplicates>
+      <!-- 3. Reconstruct the deduped ReferencePath list -->
+      <ItemGroup>
+        <ReferencePath Remove="@(ReferencePath)" />
+        <ReferencePath Include="@(_UniqueRefFileName->'%(Original)')" />
+      </ItemGroup>
+    </Target>
     <ItemGroup>
         <Reference Include="xBindSampleModel.winmd">
             <HintPath>xBindSampleModel\bin\$(Platform)\$(Configuration)\xBindSampleModel.winmd</HintPath>
         </Reference>
+        <ReferencePath Include="packages\microsoft.*\**\Microsoft.*.winmd">
+            <WinMDFile>true</WinMDFile>
+            <ReferenceSourceTarget>ExpandSDKReference</ReferenceSourceTarget>
+        </ReferencePath>
+        <!-- remove duplications in ReferencePath -->
         <Midl Include="MainPage.idl">
             <DependentUpon>MainPage.xaml</DependentUpon>
         </Midl>
@@ -307,17 +333,4 @@
         </Image>
     </ItemGroup>
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-    <ImportGroup Label="ExtensionTargets">
-        <Import Project="$(PkgMicrosoft_Windows_CppWinRT)\build\native\Microsoft.Windows.CppWinRT.targets"
-            Condition="Exists('$(PkgMicrosoft_Windows_CppWinRT)\build\native\Microsoft.Windows.CppWinRT.targets')" />
-    </ImportGroup>
-    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild" DependsOnTargets="">
-        <PropertyGroup>
-            <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-        </PropertyGroup>
-        <Error Condition="!Exists('$(PkgMicrosoft_Windows_CppWinRT)\build\native\Microsoft.Windows.CppWinRT.props')"
-            Text="$([System.String]::Format('$(ErrorText)', '$(PkgMicrosoft_Windows_CppWinRT)\build\native\Microsoft.Windows.CppWinRT.props'))" />
-        <Error Condition="!Exists('$(PkgMicrosoft_Windows_CppWinRT)\build\native\Microsoft.Windows.CppWinRT.targets')"
-            Text="$([System.String]::Format('$(ErrorText)', '$(PkgMicrosoft_Windows_CppWinRT)\build\native\Microsoft.Windows.CppWinRT.targets'))" />
-    </Target>
 </Project>

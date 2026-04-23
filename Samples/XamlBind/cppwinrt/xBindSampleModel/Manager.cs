@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Windows.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Data;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using Windows.Foundation.Collections;
 using System.Collections;
 using System.Collections.Specialized;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 using Windows.UI.Popups;
 
 namespace xBindSampleModel
@@ -33,7 +33,7 @@ namespace xBindSampleModel
         public EmployeeDictionary ReportsDict {  get { return _reportsDictionary; } }
 
         public string NullStringProperty { get; set; }
-        public Windows.UI.Xaml.Media.ImageSource NullImageSource
+        public Microsoft.UI.Xaml.Media.ImageSource NullImageSource
         {
             get { return null; }
             set { }

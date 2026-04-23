@@ -2,6 +2,7 @@
 #include "PhasingTests.h"
 #include "PhasingTests.g.cpp"
 
+#include "winrt/Microsoft.UI.Xaml.Interop.h"
 #include "winrt/Windows.Foundation.Collections.h"
 
 #include "winrt/xBindSampleModel.h"
@@ -13,8 +14,9 @@ namespace winrt::SDKTemplate::implementation
         [this]() -> winrt::Windows::Foundation::IAsyncAction
         {
             co_await _dataSource.SetupDataSourceUsingPicturesFolder();
-            _CCToken = _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>()
-                .VectorChanged({ this, &PhasingTests::DataSource_VectorChanged });
+            // _CCToken = _dataSource.try_as<winrt::Windows::Foundation::Collections::IObservableVector<winrt::xBindSampleModel::FileItem>>()
+            //     .VectorChanged({ this, &PhasingTests::DataSource_VectorChanged });
+            _CCToken = _dataSource.VectorChanged({ this, &PhasingTests::DataSource_VectorChanged });
             LoadingPanel().Visibility(Windows::UI::Xaml::Visibility::Collapsed);
             myGridView().ItemsSource(_dataSource);
             initialized = true;
@@ -49,10 +51,12 @@ namespace winrt::SDKTemplate::implementation
         [&, this]() -> winrt::Windows::Foundation::IAsyncAction
         {
             winrt::Windows::Storage::StorageFolder f = co_await picker.PickSingleFolderAsync();
-            _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>().VectorChanged(_CCToken);
+            // _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>().VectorChanged(_CCToken);
+            _dataSource.VectorChanged(_CCToken);
             _dataSource = winrt::xBindSampleModel::FileDataSource();
-            _CCToken = _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>()
-                .VectorChanged({ this, &PhasingTests::DataSource_VectorChanged });
+            // _CCToken = _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>()
+            //     .VectorChanged({ this, &PhasingTests::DataSource_VectorChanged });
+            _CCToken = _dataSource.VectorChanged({ this, &PhasingTests::DataSource_VectorChanged });
             myGridView().ItemsSource(_dataSource);
             LoadingPanel().Visibility(Windows::UI::Xaml::Visibility::Visible);
             co_await _dataSource.SetupDataSource(f);

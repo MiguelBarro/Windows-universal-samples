@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI;
-using Windows.UI.Xaml;
+using Microsoft.UI;
+using Microsoft.UI.Xaml;
 
 namespace xBindSampleModel
 {

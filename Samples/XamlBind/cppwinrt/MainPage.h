@@ -1,6 +1,8 @@
 #pragma once
 #include "MainPage.g.h"
 
+#include <winrt/Microsoft.UI.Xaml.Controls.h>
+
 namespace winrt::SDKTemplate::implementation
 {
     struct MainPage : MainPageT<MainPage>

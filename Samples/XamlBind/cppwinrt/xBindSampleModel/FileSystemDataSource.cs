@@ -10,9 +10,9 @@ using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Search;
-using Windows.UI.Core;
-using Windows.UI.Xaml.Interop;
-using Windows.UI.Xaml.Media.Imaging;
+using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml.Interop;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace xBindSampleModel
 {
@@ -85,7 +85,7 @@ namespace xBindSampleModel
     public sealed class FileDataSource : INotifyCollectionChanged, System.Collections.IList, IObservableVector<FileItem>
     {
         private StorageFileQueryResult _queryResult;
-        private CoreDispatcher dispatcher;
+        private DispatcherQueue dispatcherQueue;
         private int _count = 0;
         private List<FileItem> _cache;
 
@@ -94,7 +94,7 @@ namespace xBindSampleModel
 
         public FileDataSource()
         {
-            dispatcher = Windows.UI.Xaml.Window.Current.Dispatcher;
+            dispatcherQueue = DispatcherQueue.GetForCurrentThread();
             _cache = new List<FileItem>();
         }
 
@@ -127,9 +127,9 @@ namespace xBindSampleModel
 
         private void QueryResult_ContentsChanged(IStorageQueryResultBase sender, object args)
         {
-            if (!dispatcher.HasThreadAccess)
+            if (!dispatcherQueue.HasThreadAccess)
             {
-                var t = dispatcher.RunAsync(CoreDispatcherPriority.Normal, ResetCollection);
+                dispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, ResetCollection);
             }
         }
 
@@ -270,7 +270,7 @@ namespace xBindSampleModel
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _cache.GetEnumerator();
         }
 
         #region IObservableVector Implementation
@@ -327,12 +327,12 @@ namespace xBindSampleModel
 
         IEnumerator<FileItem> IEnumerable<FileItem>.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _cache.GetEnumerator();
         }
 
         int IList<FileItem>.IndexOf(FileItem item)
         {
-            throw new NotImplementedException();
+            return _cache.IndexOf(item);
         }
 
         void IList<FileItem>.Insert(int index, FileItem item)
