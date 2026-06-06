@@ -22,6 +22,9 @@ namespace winrt::SDKTemplate::implementation
 
         void myGridView_ContainerContentChanging(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs const& args);
         void DataSource_VectorChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::Collections::IVectorChangedEventArgs const& e);
+
+        // aux coroutines
+        winrt::fire_and_forget CoroChangeFolderClick(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::UI::Xaml::RoutedEventArgs const& e);
     };
 }
 namespace winrt::SDKTemplate::factory_implementation
