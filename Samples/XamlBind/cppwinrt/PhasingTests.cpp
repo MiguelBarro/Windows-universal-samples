@@ -10,15 +10,20 @@ namespace winrt::SDKTemplate::implementation
 {
     PhasingTests::PhasingTests()
     {
-        [this]() -> winrt::Windows::Foundation::IAsyncAction
+        // https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#rcoro-capture
+        [](PhasingTests& self) -> winrt::fire_and_forget
         {
-            co_await _dataSource.SetupDataSourceUsingPicturesFolder();
-            _CCToken = _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>()
-                .VectorChanged({ this, &PhasingTests::DataSource_VectorChanged });
-            LoadingPanel().Visibility(Windows::UI::Xaml::Visibility::Collapsed);
-            myGridView().ItemsSource(_dataSource);
-            initialized = true;
-        }();
+            auto lifetime = self.get_strong();
+
+            co_await self._dataSource.SetupDataSourceUsingPicturesFolder();
+
+            self._CCToken = self._dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>()
+                .VectorChanged({ &self, &PhasingTests::DataSource_VectorChanged });
+
+            self.LoadingPanel().Visibility(Windows::UI::Xaml::Visibility::Collapsed);
+            self.myGridView().ItemsSource(self._dataSource);
+            self.initialized = true;
+        }(*this);
     }
 
     PhasingTests::~PhasingTests()
@@ -38,17 +43,27 @@ namespace winrt::SDKTemplate::implementation
     }
 
     void PhasingTests::ChangeFolderClick(
+            winrt::Windows::Foundation::IInspectable const& sender,
+            winrt::Windows::UI::Xaml::RoutedEventArgs const& e)
+    {
+        CoroChangeFolderClick(sender, e);
+    }
+
+    winrt::fire_and_forget
+    PhasingTests::CoroChangeFolderClick(
             winrt::Windows::Foundation::IInspectable const&,
             winrt::Windows::UI::Xaml::RoutedEventArgs const&)
     {
+        auto lifetime = get_strong();
+
         winrt::Windows::Storage::Pickers::FolderPicker picker;
         picker.SuggestedStartLocation(winrt::Windows::Storage::Pickers::PickerLocationId::PicturesLibrary);
         picker.FileTypeFilter().Append(L".jpg");
         picker.FileTypeFilter().Append(L".png");
 
-        [&, this]() -> winrt::Windows::Foundation::IAsyncAction
+        winrt::Windows::Storage::StorageFolder f = co_await picker.PickSingleFolderAsync();
+        if (f)
         {
-            winrt::Windows::Storage::StorageFolder f = co_await picker.PickSingleFolderAsync();
             _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>().VectorChanged(_CCToken);
             _dataSource = winrt::xBindSampleModel::FileDataSource();
             _CCToken = _dataSource.try_as<winrt::xBindSampleModel::IFileDataSourceClass>()
@@ -57,8 +72,7 @@ namespace winrt::SDKTemplate::implementation
             LoadingPanel().Visibility(Windows::UI::Xaml::Visibility::Visible);
             co_await _dataSource.SetupDataSource(f);
             LoadingPanel().Visibility(Windows::UI::Xaml::Visibility::Collapsed);
-        }();
-
+        }
     }
 
     void PhasingTests::SlowPhasing_UnChecked(
