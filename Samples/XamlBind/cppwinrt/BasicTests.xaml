@@ -124,7 +124,7 @@
 
                     <TextBlock Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource Note}"><Run>Dictionaries/Maps can be indexed using a string. Note the string needs to be quoted.</Run></TextBlock>
 
-                    <!-- For some reason the Xaml compiler doesn't translate 'Brian0' into a hstring but a char[]
+                    <!-- Uncomment this after https://github.com/microsoft/microsoft-ui-xaml/issues/11162
                     <TextBlock Grid.Row="5" Text="Explicit OneTime - Model.ManagerProp.ReportsDict['Brian0'].FullName: "/>
                     <TextBlock Grid.Row="5"  Grid.Column="1" Text='{x:Bind Model.ManagerProp.ReportsDict["Brian0"].FullName(), Mode=OneTime}'/>
                     -->
