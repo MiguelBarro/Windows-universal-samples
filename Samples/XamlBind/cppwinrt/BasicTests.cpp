@@ -19,7 +19,7 @@ namespace winrt::SDKTemplate::implementation
 
     void BasicTests::InitializeValues()
     {
-        _dpOnPage = L"DP on page";
+        DPOnPage(L"DP on page");
     }
 
     winrt::xBindSampleModel::DataModel BasicTests::Model()
@@ -27,15 +27,24 @@ namespace winrt::SDKTemplate::implementation
         return _model;
     }
 
+    winrt::Windows::UI::Xaml::DependencyProperty BasicTests::DPOnPageProperty()
+    {
+        static auto dp = winrt::Windows::UI::Xaml::DependencyProperty::Register(
+            L"DPOnPage",
+            winrt::xaml_typename<hstring>(),
+            winrt::xaml_typename<winrt::SDKTemplate::BasicTests>(),
+            winrt::Windows::UI::Xaml::PropertyMetadata{nullptr});
+        return dp;
+    }
+
     hstring BasicTests::DPOnPage()
     {
-        return hstring(_dpOnPage);
+        return winrt::unbox_value<hstring>(GetValue(DPOnPageProperty()));
     }
 
     void BasicTests::DPOnPage(hstring const& value)
     {
-        if (value != _dpOnPage)
-            _dpOnPage = value;
+        SetValue(DPOnPageProperty(), winrt::box_value(value));
     }
 
     void BasicTests::UpdateValuesClick(
@@ -43,7 +52,7 @@ namespace winrt::SDKTemplate::implementation
             winrt::Windows::UI::Xaml::RoutedEventArgs const&)
     {
         _model.UpdateValues();
-        _dpOnPage += L"-";
+        DPOnPage( DPOnPage() + L"-");
     }
 
     void BasicTests::ResetValuesClick(
