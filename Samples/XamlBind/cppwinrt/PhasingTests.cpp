@@ -112,7 +112,7 @@ namespace winrt::SDKTemplate::implementation
             }
             else if (RadioxBindTempl().IsChecked().Value())
             {
-                myGridView().ItemTemplate(Resources().Lookup(box_value(L"ClassicBindingFileTemplate"))
+                myGridView().ItemTemplate(Resources().Lookup(box_value(L"NonPhasedFileTemplate"))
                         .as<winrt::Windows::UI::Xaml::DataTemplate>());
             }
             else if (RadioClassicTempl().IsChecked().Value())
@@ -127,10 +127,10 @@ namespace winrt::SDKTemplate::implementation
             winrt::Windows::Foundation::IInspectable const&,
             winrt::Windows::UI::Xaml::Controls::ContainerContentChangingEventArgs const& args)
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
         if (args.Phase() < 10)
             args.RegisterUpdateCallback({ this, &PhasingTests::myGridView_ContainerContentChanging });
-
-        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
     void PhasingTests::DataSource_VectorChanged(
