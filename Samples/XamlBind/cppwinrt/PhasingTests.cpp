@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "PhasingTests.h"
+#include "FileItem.g.cpp"
 #include "PhasingTests.g.cpp"
 
 #include "winrt/Windows.Foundation.Collections.h"
@@ -8,6 +9,22 @@
 
 namespace winrt::SDKTemplate::implementation
 {
+    // workaround for CCW Windows::UI::Xaml::Data::ICustomProperty issue
+    Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable>
+        WrapDataSource(winrt::xBindSampleModel::FileDataSource& dataSource)
+    {
+        std::vector<winrt::Windows::Foundation::IInspectable> files;
+        auto data = dataSource.as<winrt::Windows::Foundation::Collections::IVector<winrt::xBindSampleModel::FileItem>>();
+
+        std::transform(data.begin(), data.end(), std::back_inserter(files),
+            [](winrt::xBindSampleModel::FileItem const& item)
+            {
+                return winrt::SDKTemplate::FileItem(item).as<winrt::Windows::Foundation::IInspectable>();
+            });
+
+        return winrt::single_threaded_vector<winrt::Windows::Foundation::IInspectable>(std::move(files));
+    }
+
     PhasingTests::PhasingTests()
     {
         // https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#rcoro-capture
@@ -107,16 +124,19 @@ namespace winrt::SDKTemplate::implementation
         {
             if (RadioPhasedTempl().IsChecked().Value())
             {
+                myGridView().ItemsSource(_dataSource);
                 myGridView().ItemTemplate(Resources().Lookup(box_value(L"PhasedFileTemplate"))
                         .as<winrt::Windows::UI::Xaml::DataTemplate>());
             }
             else if (RadioxBindTempl().IsChecked().Value())
             {
+                myGridView().ItemsSource(_dataSource);
                 myGridView().ItemTemplate(Resources().Lookup(box_value(L"NonPhasedFileTemplate"))
                         .as<winrt::Windows::UI::Xaml::DataTemplate>());
             }
             else if (RadioClassicTempl().IsChecked().Value())
             {
+                myGridView().ItemsSource(WrapDataSource(_dataSource));
                 myGridView().ItemTemplate(Resources().Lookup(box_value(L"ClassicBindingFileTemplate"))
                         .as<winrt::Windows::UI::Xaml::DataTemplate>());
             }
@@ -140,5 +160,38 @@ namespace winrt::SDKTemplate::implementation
         NoItemsPanel().Visibility(_dataSource.Count() == 0
                 ?  winrt::Windows::UI::Xaml::Visibility::Visible
                 : winrt::Windows::UI::Xaml::Visibility::Collapsed);
+
+        if (RadioClassicTempl().IsChecked().Value())
+            myGridView().ItemsSource(WrapDataSource(_dataSource));
     }
+
+    FileItem::FileItem(winrt::xBindSampleModel::FileItem item)
+        : _item(std::move(item))
+    {}
+
+    winrt::Windows::UI::Xaml::Media::Imaging::BitmapImage FileItem::ImageData()
+    {
+        return _item.ImageData();
+    }
+
+    hstring FileItem::DisplayName()
+    {
+        return _item.DisplayName();
+    }
+
+    hstring FileItem::prettyDate()
+    {
+        return _item.prettyDate();
+    }
+
+    hstring FileItem::prettyFileSize()
+    {
+        return _item.prettyFileSize();
+    }
+
+    hstring FileItem::prettyImageSize()
+    {
+        return _item.prettyImageSize();
+    }
+
 }

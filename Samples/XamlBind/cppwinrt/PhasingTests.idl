@@ -1,5 +1,17 @@
 namespace SDKTemplate
 {
+    [bindable]
+    runtimeclass FileItem
+    {
+        FileItem(xBindSampleModel.FileItem item);
+
+        Windows.UI.Xaml.Media.Imaging.BitmapImage ImageData { get; };
+        String DisplayName { get; };
+        String prettyDate { get; };
+        String prettyFileSize { get; };
+        String prettyImageSize { get; };
+    };
+
     [default_interface]
     runtimeclass PhasingTests : Windows.UI.Xaml.Controls.Page
     {
