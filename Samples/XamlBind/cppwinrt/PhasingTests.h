@@ -1,8 +1,24 @@
 #pragma once
+#include "FileItem.g.h"
 #include "PhasingTests.g.h"
+#include "winrt/xBindSampleModel.h"
 
 namespace winrt::SDKTemplate::implementation
 {
+    struct FileItem : FileItemT<FileItem>
+    {
+        FileItem(winrt::xBindSampleModel::FileItem);
+
+        winrt::Windows::UI::Xaml::Media::Imaging::BitmapImage ImageData();
+        winrt::hstring DisplayName();
+        winrt::hstring prettyDate();
+        winrt::hstring prettyFileSize();
+        winrt::hstring prettyImageSize();
+
+    private:
+        winrt::xBindSampleModel::IFileItemClass _item;
+    };
+
     struct PhasingTests : PhasingTestsT<PhasingTests>
     {
         PhasingTests();
@@ -30,6 +46,10 @@ namespace winrt::SDKTemplate::implementation
 namespace winrt::SDKTemplate::factory_implementation
 {
     struct PhasingTests : PhasingTestsT<PhasingTests, implementation::PhasingTests>
+    {
+    };
+
+    struct FileItem : FileItemT<FileItem, implementation::FileItem>
     {
     };
 }
