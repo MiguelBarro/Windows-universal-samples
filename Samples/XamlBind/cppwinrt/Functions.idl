@@ -17,6 +17,13 @@ namespace SDKTemplate
 
         Windows.Foundation.Collections.IObservableVector<ColorEntry> ColorEntries { get; };
         xBindSampleModel.DataModel Model { get; };
+
+        /*
+           Sliders must be introduced here because Xaml compiler only modifies implementation
+           sources.
+           The binding code uses non-implementation namespace (winrt::SDKTemplate) to reference
+           the sliders and fails otherwise.
+        */
         Windows.UI.Xaml.Controls.Slider RedSlider {get;};
         Windows.UI.Xaml.Controls.Slider GreenSlider {get;};
         Windows.UI.Xaml.Controls.Slider BlueSlider {get;};
