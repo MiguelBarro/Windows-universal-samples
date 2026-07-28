@@ -5,7 +5,7 @@
             <IncludeAssets>native</IncludeAssets>
         </PackageReference>
     </ItemGroup>
-    <Import Project="obj\xBindSampleCX.vcxproj.nuget.g.props" Condition="Exists('obj\xBindSampleCX.vcxproj.nuget.g.props')" />
+    <Import Project="obj\xBindSampleCPP.vcxproj.nuget.g.props" Condition="Exists('obj\xBindSampleCPP.vcxproj.nuget.g.props')" />
     <Import Project="$(PkgMicrosoft_Windows_CppWinRT)/build/native/Microsoft.Windows.CppWinRT.props"
         Condition="Exists('$(PkgMicrosoft_Windows_CppWinRT)/build/native/Microsoft.Windows.CppWinRT.props')" />
     <PropertyGroup>
@@ -16,7 +16,7 @@
         <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
         <CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>
         <MinimalCoreWin>true</MinimalCoreWin>
-        <ProjectGuid>{73e8548a-7369-5eee-bb25-fd34e2e4a499}</ProjectGuid>
+        <ProjectGuid>{4d206ad1-3d54-4a24-be37-5665d9dd1536}</ProjectGuid>
         <RootNamespace>SDKTemplate</RootNamespace>
         <DefaultLanguage>en-US</DefaultLanguage>
         <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
@@ -24,7 +24,7 @@
         <ApplicationType>Windows Store</ApplicationType>
         <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
         <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.26100.0</WindowsTargetPlatformVersion>
-        <WindowsTargetPlatformMinVersion>10.0.22621.0</WindowsTargetPlatformMinVersion>
+        <WindowsTargetPlatformMinVersion>10.0.26100.0</WindowsTargetPlatformMinVersion>
     </PropertyGroup>
     <PropertyGroup Label=".NETNative">
         <DotNetNativeVersion>2.2.12-rel-31116-00</DotNetNativeVersion>

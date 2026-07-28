@@ -7,14 +7,14 @@
   IgnorableNamespaces="uap mp">
 
     <Identity
-      Name="Microsoft.SDKSamples.xBindSampleCX.CPP"
+      Name="Microsoft.SDKSamples.xBindSampleCPP.CPP"
       Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
       Version="1.0.0.0" />
 
     <mp:PhoneIdentity PhoneProductId="58d70943-1967-48be-8e84-1f5c7bdcd2c5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
     <Properties>
-        <DisplayName>xBindSampleCX CPP Sample</DisplayName>
+        <DisplayName>xBindSampleCPP C++/WinRT Sample</DisplayName>
         <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
         <Logo>Assets\StoreLogo-sdk.png</Logo>
     </Properties>
@@ -28,14 +28,14 @@
     </Resources>
 
     <Applications>
-        <Application Id="xBindSampleCX.App"
+        <Application Id="xBindSampleCPP.App"
           Executable="$targetnametoken$.exe"
-          EntryPoint="xBindSampleCX.App">
+          EntryPoint="xBindSampleCPP.App">
             <uap:VisualElements
-              DisplayName="xBindSampleCX CPP sample"
+              DisplayName="xBindSampleCPP C++/WinRT sample"
               Square150x150Logo="Assets\squareTile-sdk.png"
               Square44x44Logo="Assets\smallTile-sdk.png"
-              Description="xBindSampleCX CPP sample"
+              Description="xBindSampleCPP C++/WinRT sample"
               BackgroundColor="#00B2F0">
                 <uap:SplashScreen Image="Assets\splash-sdk.png" />
                 <uap:DefaultTile>
