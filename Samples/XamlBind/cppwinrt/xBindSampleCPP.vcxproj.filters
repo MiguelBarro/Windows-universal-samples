@@ -23,6 +23,7 @@
     <ClCompile Include="PhasingTests.cpp" />
     <ClCompile Include="Templates.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Scenario.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -35,6 +36,7 @@
     <ClInclude Include="OtherBindings.h" />
     <ClInclude Include="PhasingTests.h" />
     <ClInclude Include="Templates.h" />
+    <ClInclude Include="Scenario.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -75,5 +77,8 @@
     <Image Include="$(SharedContentDir)\media\windows-sdk.png">
       <Filter>Assets</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
