@@ -2,6 +2,7 @@
 page_type: sample
 languages:
 - csharp
+- C++/WinRT
 products:
 - windows
 - windows-uwp
