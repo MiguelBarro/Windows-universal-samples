@@ -2,6 +2,8 @@
 
 #include "App.h"
 #include "MainPage.h"
+#include "SectionView.h"
+#include "ArticlePage.h"
 
 using namespace winrt;
 using namespace Windows::ApplicationModel;
@@ -10,8 +12,8 @@ using namespace Windows::Foundation;
 using namespace Windows::UI::Xaml;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Navigation;
-using namespace XamlTransform3DAnimations;
-using namespace XamlTransform3DAnimations::implementation;
+using namespace Transform3DAnimations;
+using namespace Transform3DAnimations::implementation;
 
 /// <summary>
 /// Creates the singleton application object.  This is the first line of authored code
@@ -19,6 +21,7 @@ using namespace XamlTransform3DAnimations::implementation;
 /// </summary>
 App::App()
 {
+    InitializeComponent();
     Suspending({ this, &App::OnSuspending });
 
 #if defined _DEBUG && !defined DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION
@@ -49,13 +52,22 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
 
     // Do not repeat app initialization when the Window already has content,
     // just ensure that the window is active
-    if (rootFrame == nullptr)
+    if (!rootFrame)
     {
+        // Assure the Dependency data is registered before creating any XAML content
+        SectionView::ViewModelProperty();
+        ArticlePage::ArticleProperty();
+
         // Create a Frame to act as the navigation context and associate it with
         // a SuspensionManager key
         rootFrame = Frame();
 
         rootFrame.NavigationFailed({ this, &App::OnNavigationFailed });
+
+        // Add background to our Frame for navigation transitions
+        rootFrame.Background(Application::Current().Resources()
+                .Lookup(box_value(L"ApplicationPageBackgroundThemeBrush"))
+                        .as<Windows::UI::Xaml::Media::Brush>());
 
         if (e.PreviousExecutionState() == ApplicationExecutionState::Terminated)
         {
@@ -63,14 +75,14 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
             // final launch steps after the restore is complete
         }
 
-        if (e.PrelaunchActivated() == false)
+        if (!e.PrelaunchActivated())
         {
             if (rootFrame.Content() == nullptr)
             {
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(xaml_typename<XamlTransform3DAnimations::MainPage>(), box_value(e.Arguments()));
+                rootFrame.Navigate(xaml_typename<Transform3DAnimations::MainPage>(), box_value(e.Arguments()));
             }
             // Place the frame in the current Window
             Window::Current().Content(rootFrame);
@@ -87,7 +99,7 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(xaml_typename<XamlTransform3DAnimations::MainPage>(), box_value(e.Arguments()));
+                rootFrame.Navigate(xaml_typename<Transform3DAnimations::MainPage>(), box_value(e.Arguments()));
             }
             // Ensure the current window is active
             Window::Current().Activate();
@@ -105,6 +117,8 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
 void App::OnSuspending([[maybe_unused]] IInspectable const& sender, [[maybe_unused]] SuspendingEventArgs const& e)
 {
     // Save application state and stop any background activity
+    auto deferral = e.SuspendingOperation().GetDeferral();
+    deferral.Complete();
 }
 
 /// <summary>

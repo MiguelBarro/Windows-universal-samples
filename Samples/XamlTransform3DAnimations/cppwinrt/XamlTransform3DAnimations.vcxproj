@@ -8,7 +8,7 @@
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{faeed705-f731-4166-9783-e49143abb294}</ProjectGuid>
     <ProjectName>XamlTransform3DAnimations</ProjectName>
-    <RootNamespace>XamlTransform3DAnimations</RootNamespace>
+    <RootNamespace>Transform3DAnimations</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
@@ -116,12 +116,26 @@
     <ClInclude Include="MainPage.h">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="SectionView.h">
+      <DependentUpon>SectionView.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ArticlePage.h">
+      <DependentUpon>ArticlePage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="ViewModels.ArticleViewModel.h"/>
+    <ClInclude Include="ViewModels.HeroArticlesViewModel.h"/>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ArticlePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SectionView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
@@ -149,15 +163,20 @@
     <ClCompile Include="MainPage.cpp">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </ClCompile>
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="SectionView.cpp">
+      <DependentUpon>SectionView.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="ArticlePage.cpp">
+      <DependentUpon>ArticlePage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="ViewModels.ArticleViewModel.cpp"/>
+    <ClCompile Include="ViewModels.HeroArticlesViewModel.cpp"/>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <DependentUpon>Project.idl</DependentUpon>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="App.idl">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Midl>
-    <Midl Include="MainPage.idl">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Midl>
+    <Midl Include="Project.idl"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -165,6 +184,17 @@
     <Text Include="readme.txt">
       <DeploymentContent>false</DeploymentContent>
     </Text>
+  </ItemGroup>
+  <ItemGroup Label="Images">
+    <None Include="Images\circle_image1.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Images\circle_image2.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Images\circle_image3.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

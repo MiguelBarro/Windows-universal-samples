@@ -2,24 +2,33 @@
 
 #include "MainPage.g.h"
 
-namespace winrt::XamlTransform3DAnimations::implementation
+namespace winrt::Transform3DAnimations::implementation
 {
     struct MainPage : MainPageT<MainPage>
     {
-        MainPage()
-        {
-            // Xaml objects should not call InitializeComponent during construction.
-            // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-        }
+        MainPage();
 
-        int32_t MyProperty();
-        void MyProperty(int32_t value);
+        void SectionView_ArticleSelected(
+                Windows::Foundation::IInspectable const& sender,
+                Transform3DAnimations::ViewModels::ArticleViewModel const& e);
 
-        void ClickHandler(Windows::Foundation::IInspectable const& sender, Windows::UI::Xaml::RoutedEventArgs const& args);
+        void OnNavigatedTo(Windows::UI::Xaml::Navigation::NavigationEventArgs const& e);
+        void OnNavigatedFrom(Windows::UI::Xaml::Navigation::NavigationEventArgs const&);
+
+    private:
+        std::mt19937 _gen {42};
+        std::uniform_int_distribution<uint32_t> _random;
+        winrt::Windows::UI::Xaml::DispatcherTimer _updateTimer;
+
+        void UpdateTimer_Tick(
+                winrt::Windows::Foundation::IInspectable const& sender,
+                winrt::Windows::Foundation::IInspectable const& e);
+
+        void UpdateRandomSection();
     };
 }
 
-namespace winrt::XamlTransform3DAnimations::factory_implementation
+namespace winrt::Transform3DAnimations::factory_implementation
 {
     struct MainPage : MainPageT<MainPage, implementation::MainPage>
     {

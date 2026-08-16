@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "App.xaml.g.h"
 
-namespace winrt::XamlTransform3DAnimations::implementation
+namespace winrt::Transform3DAnimations::implementation
 {
     struct App : AppT<App>
     {
