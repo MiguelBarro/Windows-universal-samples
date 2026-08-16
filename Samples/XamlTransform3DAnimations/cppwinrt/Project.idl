@@ -1,0 +1,54 @@
+namespace Transform3DAnimations
+{
+    namespace ViewModels
+    {
+        runtimeclass ArticleViewModel
+        {
+            ArticleViewModel();
+
+            String Headline;
+            Windows.UI.Xaml.Media.ImageSource ImageSource { get; };
+            String FullText { get; };
+        }
+
+        runtimeclass HeroArticlesViewModel : Windows.UI.Xaml.Data.INotifyPropertyChanged
+        {
+            HeroArticlesViewModel();
+
+            Transform3DAnimations.ViewModels.ArticleViewModel Article0;
+            Transform3DAnimations.ViewModels.ArticleViewModel Article1;
+        }
+    }
+
+    runtimeclass ArticlePage : Windows.UI.Xaml.Controls.Page
+    {
+        ArticlePage();
+
+        Transform3DAnimations.ViewModels.ArticleViewModel Article;
+        Windows.UI.Xaml.Controls.RichTextBlockOverflow TextBlock1 { get; };
+
+        static Windows.UI.Xaml.DependencyProperty ArticleProperty { get; };
+    }
+
+    runtimeclass SectionView : Windows.UI.Xaml.Controls.UserControl
+    {
+        SectionView();
+
+        Transform3DAnimations.ViewModels.HeroArticlesViewModel ViewModel;
+
+        void OnViewModelChanged(
+                Transform3DAnimations.ViewModels.HeroArticlesViewModel oldValue,
+                Transform3DAnimations.ViewModels.HeroArticlesViewModel newValue);
+
+        static Windows.UI.Xaml.DependencyProperty ViewModelProperty { get; };
+
+        event Windows.Foundation.TypedEventHandler<SectionView, Transform3DAnimations.ViewModels.ArticleViewModel> ArticleSelected;
+    }
+
+    runtimeclass MainPage : Windows.UI.Xaml.Controls.Page
+    {
+        MainPage();
+
+        void SectionView_ArticleSelected(Object sender, Transform3DAnimations.ViewModels.ArticleViewModel param);
+    }
+}
