@@ -6,9 +6,9 @@
     Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="1c3c4e2e-b0f9-43b3-b26c-272a8e725919" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
   <Properties>
-    <DisplayName>XamlTransform3DAnimations</DisplayName>
-    <PublisherDisplayName>migue</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+      <DisplayName>Transform3D Animations C++/WinRT Sample</DisplayName>
+    <PublisherDisplayName>Microsoft</PublisherDisplayName>
+    <Logo>Assets/storelogo-sdk.png</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -18,11 +18,19 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="XamlTransform3DAnimations.App">
-      <uap:VisualElements DisplayName="XamlTransform3DAnimations" Description="Project for a single page C++/WinRT Universal Windows Platform (UWP) app with no predefined layout"
-        Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <uap:VisualElements
+        DisplayName="Transform3D Animations C++/WinRT Sample"
+        Square150x150Logo="Assets/squaretile-sdk.png"
+        Square44x44Logo="Assets/smalltile-sdk.png"
+        Description="Transform3D Animations C++/WinRT Sample"
+        BackgroundColor="#00b2f0">
+        <uap:SplashScreen Image="Assets/splash-sdk.png" />
+        <uap:DefaultTile
+            Wide310x150Logo="Assets/Wide310x150Logo.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
