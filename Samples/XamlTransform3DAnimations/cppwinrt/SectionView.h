@@ -33,6 +33,7 @@ namespace winrt::Transform3DAnimations::implementation
                 Windows::UI::Xaml::DependencyObject const& o,
                 Windows::UI::Xaml::DependencyPropertyChangedEventArgs const& e);
     private:
+        static winrt::Windows::UI::Xaml::DependencyProperty ViewModelProperty_;
         Windows::UI::ViewManagement::UISettings _uiSettings;
         event<
             Windows::Foundation::TypedEventHandler<

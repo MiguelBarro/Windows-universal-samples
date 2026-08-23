@@ -16,6 +16,8 @@ namespace winrt::Transform3DAnimations::implementation
         void OnNavigatedFrom(Windows::UI::Xaml::Navigation::NavigationEventArgs const& e);
 
     private:
+        static Windows::UI::Xaml::DependencyProperty ArticleProperty_;
+
         event_token _token;
         Windows::UI::Xaml::DispatcherTimer _loadTimer;
         Windows::UI::ViewManagement::UISettings _uiSettings;
