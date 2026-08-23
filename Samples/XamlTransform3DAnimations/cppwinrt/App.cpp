@@ -2,8 +2,6 @@
 
 #include "App.h"
 #include "MainPage.h"
-#include "SectionView.h"
-#include "ArticlePage.h"
 
 using namespace winrt;
 using namespace Windows::ApplicationModel;
@@ -54,10 +52,6 @@ void App::OnLaunched(LaunchActivatedEventArgs const& e)
     // just ensure that the window is active
     if (!rootFrame)
     {
-        // Assure the Dependency data is registered before creating any XAML content
-        SectionView::ViewModelProperty();
-        ArticlePage::ArticleProperty();
-
         // Create a Frame to act as the navigation context and associate it with
         // a SuspensionManager key
         rootFrame = Frame();

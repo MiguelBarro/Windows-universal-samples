@@ -20,24 +20,27 @@ namespace winrt::Transform3DAnimations::implementation
     }
 
     /*static*/
+    winrt::Windows::UI::Xaml::DependencyProperty SectionView::ViewModelProperty_ =
+            winrt::Windows::UI::Xaml::DependencyProperty::Register(
+                    L"ViewModel",
+                    winrt::xaml_typename<Transform3DAnimations::ViewModels::HeroArticlesViewModel>(),
+                    winrt::xaml_typename<Transform3DAnimations::SectionView>(),
+                    winrt::Windows::UI::Xaml::PropertyMetadata{nullptr, {&SectionView::OnViewModelPropertyChanged}});
+
+    /*static*/
     winrt::Windows::UI::Xaml::DependencyProperty SectionView::ViewModelProperty()
     {
-        static auto dp = winrt::Windows::UI::Xaml::DependencyProperty::Register(
-            L"ViewModel",
-            winrt::xaml_typename<Transform3DAnimations::ViewModels::HeroArticlesViewModel>(),
-            winrt::xaml_typename<Transform3DAnimations::SectionView>(),
-            winrt::Windows::UI::Xaml::PropertyMetadata{nullptr, {&SectionView::OnViewModelPropertyChanged}});
-        return dp;
+        return ViewModelProperty_;
     }
 
     winrt::Transform3DAnimations::ViewModels::HeroArticlesViewModel SectionView::ViewModel()
     {
-        return GetValue(ViewModelProperty()).as<Transform3DAnimations::ViewModels::HeroArticlesViewModel>();
+        return GetValue(ViewModelProperty_).as<Transform3DAnimations::ViewModels::HeroArticlesViewModel>();
     }
 
     void SectionView::ViewModel(winrt::Transform3DAnimations::ViewModels::HeroArticlesViewModel const& value)
     {
-        SetValue(ViewModelProperty(), winrt::box_value(value));
+        SetValue(ViewModelProperty_, winrt::box_value(value));
     }
 
     winrt::event_token SectionView::ArticleSelected(

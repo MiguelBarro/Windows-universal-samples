@@ -6,24 +6,27 @@
 namespace winrt::Transform3DAnimations::implementation
 {
     /*static*/
+    Windows::UI::Xaml::DependencyProperty ArticlePage::ArticleProperty_ =
+            Windows::UI::Xaml::DependencyProperty::Register(
+                    L"Article",
+                    xaml_typename<Transform3DAnimations::ViewModels::ArticleViewModel>(),
+                    xaml_typename<Transform3DAnimations::ArticlePage>(),
+                    Windows::UI::Xaml::PropertyMetadata{nullptr});
+
+    /*static*/
     Windows::UI::Xaml::DependencyProperty ArticlePage::ArticleProperty()
     {
-        static auto dp = Windows::UI::Xaml::DependencyProperty::Register(
-            L"Article",
-            xaml_typename<Transform3DAnimations::ViewModels::ArticleViewModel>(),
-            xaml_typename<Transform3DAnimations::ArticlePage>(),
-            Windows::UI::Xaml::PropertyMetadata{nullptr});
-        return dp;
+        return ArticleProperty_;
     }
 
     Transform3DAnimations::ViewModels::ArticleViewModel ArticlePage::Article()
     {
-        return GetValue(ArticleProperty()).as<Transform3DAnimations::ViewModels::ArticleViewModel>();
+        return GetValue(ArticleProperty_).as<Transform3DAnimations::ViewModels::ArticleViewModel>();
     }
 
     void ArticlePage::Article(Transform3DAnimations::ViewModels::ArticleViewModel const& value)
     {
-        SetValue(ArticleProperty(), box_value(value));
+        SetValue(ArticleProperty_, box_value(value));
     }
 
     ArticlePage::ArticlePage()
