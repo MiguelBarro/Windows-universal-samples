@@ -11,7 +11,7 @@ if(-not (Get-Command msbuild -ErrorAction SilentlyContinue))
 }
 if ($pwd.Path -notmatch "Samples.WindowsAudioSession.cppwinrt") { cd C:/localrepos/Windows-universal-samples/Samples/WindowsAudioSession/cppwinrt }
 Get-AppxPackage *WindowsAudioSession* | Remove-AppxPackage
-clear; msbuild -p:Platform=x64 -p:Configuration=$config -p:RestorePackagesConfig=true WindowsAudioSession.slnx -t:"Restore;Build" -m
+clear; msbuild -p:Platform=x64 -p:Configuration=$config -p:RestorePackagesConfig=true WindowsAudioSession.sln -t:"Restore;Build" -m
 if (-not (Test-Path $Env:TMP/Execute-AppxRecipe.ps1))
 {
     iwr -Uri https://gist.githubusercontent.com/MiguelBarro/6c993b519e1b2a0c2406357194f66489/raw/1d7a20861e43a07fbd501eb01971058730cb7756/Execute-AppxRecipe.ps1 -OutFile $Env:TMP/Execute-AppxRecipe.ps1
