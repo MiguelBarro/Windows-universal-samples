@@ -176,7 +176,7 @@ namespace winrt::SDKTemplate::implementation
         Uri server = TryGetUri(m_rootPage, ServerAddressField().Text());
         if (server == nullptr)
         {
-            return;
+            co_return;
         }
 
         // Certificate validation is meaningful only for secure connections.

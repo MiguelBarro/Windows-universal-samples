@@ -39,7 +39,7 @@ if (Test-Path $settingsFile)
 }
 
 # Check if the necessary certificates have been created. If not, then user should run the certificate scripts first.
-if (Test-Path $rootCertFile)
+if (-not (Test-Path $rootCertFile))
 {
     "You need to run the ..\shared\clientCertGenerator.ps1 script to create the certificates before running this script."
     return;
