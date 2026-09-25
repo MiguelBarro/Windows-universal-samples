@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "ModulePreamble.h"
+
 #include "ViewModels.HeroArticlesViewModel.h"
 #include "ViewModels.HeroArticlesViewModel.g.cpp"
 

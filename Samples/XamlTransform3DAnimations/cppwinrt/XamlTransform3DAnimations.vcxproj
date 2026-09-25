@@ -1,10 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <Import Project="packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props')" />
   <PropertyGroup>
     <SharedContentDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), LICENSE))\SharedContent</SharedContentDir>
   </PropertyGroup>
   <PropertyGroup Label="Globals">
+    <CppWinRTBuildModule>true</CppWinRTBuildModule>
+    <CppWinRTModuleInclude>
+      Transform3DAnimations
+      Windows.ApplicationModel
+      Windows.Data.Json
+      Windows.Data.Text
+      Windows.Data.Xml.Dom
+      Windows.Devices
+      Windows.Foundation
+      Windows.Globalization
+      Windows.Graphics
+      Windows.Media
+      Windows.Networking
+      Windows.Perception
+      Windows.Security
+      Windows.Storage
+      Windows.System
+      Windows.UI
+      Windows.Web
+    </CppWinRTModuleInclude>
+    <CppWinRTModuleExclude>
+      Windows.ApplicationModel.AppExtensions
+      Windows.ApplicationModel.Appointments.DataProvider
+      Windows.ApplicationModel.Calls.Provider
+      Windows.ApplicationModel.Chat
+      Windows.ApplicationModel.CommunicationBlocking
+      Windows.ApplicationModel.Contacts.DataProvider
+      Windows.ApplicationModel.Contacts.Provider
+      Windows.ApplicationModel.ConversationalAgent
+      Windows.ApplicationModel.DataTransfer.DragDrop.Core
+      Windows.ApplicationModel.Email.DataProvider
+      Windows.ApplicationModel.ExtendedExecution
+      Windows.ApplicationModel.Holographic
+      Windows.ApplicationModel.LockScreen
+      Windows.ApplicationModel.PackageExtensions
+      Windows.ApplicationModel.Payments
+      Windows.ApplicationModel.Preview.Holographic
+      Windows.ApplicationModel.Resources
+      Windows.ApplicationModel.SocialInfo
+      Windows.ApplicationModel.Store
+      Windows.ApplicationModel.UserActivities
+      Windows.ApplicationModel.UserDataAccounts.SystemAccess
+      Windows.ApplicationModel.UserDataTasks.DataProvider
+      Windows.ApplicationModel.VoiceCommands
+      Windows.ApplicationModel.Wallet
+      Windows.Devices.Background
+      Windows.Devices.Custom
+      Windows.Devices.Display
+      Windows.Devices.Enumeration.Pnp
+      Windows.Devices.Geolocation.Geofencing
+      Windows.Devices.Geolocation.Provider
+      Windows.Devices.HumanInterfaceDevice
+      Windows.Devices.Input.Preview
+      Windows.Devices.Lights
+      Windows.Devices.Lights.Effects
+      Windows.Devices.Midi
+      Windows.Devices.Perception
+      Windows.Devices.PointOfService.Provider
+      Windows.Devices.Power
+      Windows.Devices.Printers
+      Windows.Devices.Sensors.Custom
+      Windows.Devices.SerialCommunication
+      Windows.Devices.Usb
+      Windows.Devices.WiFi
+      Windows.Foundation.Diagnostics
+      Windows.Foundation.Metadata
+      Windows.Globalization.Collation
+      Windows.Globalization.DateTimeFormatting
+      Windows.Globalization.Fonts
+      Windows.Globalization.NumberFormatting
+      Windows.Globalization.PhoneNumberFormatting
+      Windows.Graphics.Capture
+      Windows.Graphics.Display.Core
+      Windows.Graphics.Holographic
+      Windows.Graphics.Printing
+      Windows.Graphics.Printing3D
+      Windows.Media.ClosedCaptioning
+      Windows.Media.ContentRestrictions
+      Windows.Media.Control
+      Windows.Media.Core.Preview
+      Windows.Media.DialProtocol
+      Windows.Media.Import
+      Windows.Media.Miracast
+      Windows.Media.Ocr
+      Windows.Media.Protection.PlayReady
+      Windows.Media.SpeechSynthesis
+      Windows.Networking.NetworkOperators
+      Windows.Networking.Proximity
+      Windows.Networking.PushNotifications
+      Windows.Networking.ServiceDiscovery.Dnssd
+      Windows.Networking.Vpn
+      Windows.Perception.People
+      Windows.Perception.Spatial.Preview
+      Windows.Perception.Spatial.Surfaces
+      Windows.Security.Authentication.Identity 
+      Windows.Security.Authentication.Identity.Core
+      Windows.Security.Authentication.Identity.Provider
+      Windows.Security.Authentication.OnlineId 
+      Windows.Security.Authorization.AppCapabilityAccess
+      Windows.Security.Credentials.UI
+      Windows.Security.Cryptography.DataProtection
+      Windows.Security.DataProtection
+      Windows.Security.ExchangeActiveSyncProvisioning
+      Windows.Security.Isolation
+      Windows.Storage.AccessCache
+      Windows.Storage.BulkAccess
+      Windows.Storage.Compression
+      Windows.System.Diagnostics.DevicePortal
+      Windows.System.Diagnostics.Telemetry
+      Windows.System.Diagnostics.TraceReporting
+      Windows.System.Display
+      Windows.System.Implementation.FileExplorer
+      Windows.System.Inventory
+      Windows.System.Power
+      Windows.System.Preview
+      Windows.System.Profile
+      Windows.System.RemoteDesktop
+      Windows.System.Threading
+      Windows.System.Update
+      Windows.System.UserProfile
+      Windows.UI.Accessibility
+      Windows.UI.ApplicationSettings
+      Windows.UI.Composition.Core
+      Windows.UI.Composition.Desktop
+      Windows.UI.Composition.Diagnostics
+      Windows.UI.Composition.Effects
+      Windows.UI.Composition.Interactions
+      Windows.UI.Composition.Scenes
+      Windows.UI.Core.Preview
+      Windows.UI.Input.Core
+      Windows.UI.Input.Inking.Analysis
+      Windows.UI.Input.Inking.Core
+      Windows.UI.Input.Inking.Preview
+      Windows.UI.Input.Preview
+      Windows.UI.Input.Spatial
+      Windows.UI.Notifications.Management
+      Windows.UI.Notifications.Preview
+      Windows.UI.Shell
+      Windows.UI.StartScreen
+      Windows.UI.UIAutomation
+      Windows.UI.ViewManagement.Core
+      Windows.UI.WebUI
+      Windows.UI.WindowManagement.Preview
+      Windows.UI.Xaml.Controls.Maps
+      Windows.UI.Xaml.Core.Direct
+      Windows.UI.Xaml.Hosting
+      Windows.UI.Xaml.Printing
+      Windows.UI.Xaml.Resources
+      Windows.UI.Xaml.Shapes
+      Windows.Web.AtomPub
+      Windows.Web.Syndication
+      Windows.Web.UI
+    </CppWinRTModuleExclude>
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>
@@ -84,12 +237,14 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup>
     <ClCompile>
+      <!-- import std; support -->
+      <BuildStlModules>true</BuildStlModules>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
-      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WINRT_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WINRT_LEAN_AND_MEAN;WINRT_ENABLE_LEGACY_COM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -113,6 +268,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ModulePreamble.h" />
     <ClInclude Include="App.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
@@ -216,13 +372,28 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
+    <Import Project="packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.props'))" />
-    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.2.0.250303.1\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+  </Target>
+  <!-- Inject module imports into XAML-generated source files (first ClCompile pass) -->
+  <Target Name="InjectModuleImportsIntoXamlGenerated"
+          AfterTargets="ComputeXamlGeneratedCompileInputs"
+          BeforeTargets="ClCompile">
+    <ItemGroup>
+      <ClCompile Update="@(ClCompile)"
+                 Condition="'%(Filename)' == 'XamlTypeInfo.g'
+                         or '%(Filename)' == 'XamlTypeInfo.Impl.g'
+                         or '%(Filename)' == 'XamlMetaDataProvider'
+                         or '%(Filename)' == 'XamlLibMetadataProvider.g'">
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
+        <ForcedIncludeFiles>$(MSBuildProjectDirectory)\ModulePreamble.h</ForcedIncludeFiles>
+      </ClCompile>
+    </ItemGroup>
   </Target>
 </Project>
