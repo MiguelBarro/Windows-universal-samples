@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "ModulePreamble.h"
 #include "ArticlePage.h"
 #include "ArticlePage.g.cpp"
 #include "ViewModels.ArticleViewModel.h"

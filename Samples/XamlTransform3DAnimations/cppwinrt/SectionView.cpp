@@ -1,4 +1,6 @@
 #include "pch.h"
+#include "ModulePreamble.h"
+
 #include "SectionView.h"
 #include "SectionView.g.cpp"
 
