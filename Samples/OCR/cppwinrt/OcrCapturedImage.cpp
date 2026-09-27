@@ -49,7 +49,7 @@ namespace winrt::SDKTemplate::implementation
         {
             rootPage.NotifyUser(ocrLanguage.DisplayName() + L" is not supported.", NotifyType::ErrorMessage);
 
-            return;
+            co_return;
         }
 
         co_await StartCameraAsync();

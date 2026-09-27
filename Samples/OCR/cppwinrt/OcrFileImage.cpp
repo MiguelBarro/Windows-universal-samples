@@ -160,7 +160,7 @@ namespace winrt::SDKTemplate::implementation
                 L"Bitmap dimensions (" + to_hstring(bitmap.PixelWidth()) + L"x" + to_hstring(bitmap.PixelHeight()) + L"are too big for OCR. Max image dimension is " + to_hstring(OcrEngine::MaxImageDimension()) + L".",
                 NotifyType::ErrorMessage);
 
-            return;
+            co_return;
         }
 
         OcrEngine ocrEngine = nullptr;
