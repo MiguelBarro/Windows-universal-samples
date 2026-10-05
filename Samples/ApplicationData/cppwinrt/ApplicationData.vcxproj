@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <Import Project="packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props')" />
   <PropertyGroup>
     <SharedContentDir>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), LICENSE))\SharedContent</SharedContentDir>
   </PropertyGroup>
   <PropertyGroup Label="Globals">
+    <XamlLanguage>CppWinRT</XamlLanguage>
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
+    <CppWinRTGenerateWindowsMetadata>true</CppWinRTGenerateWindowsMetadata>
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{83665FC5-1A28-4FF1-A403-2A7ACBA3E6A5}</ProjectGuid>
     <ProjectName>ApplicationData</ProjectName>
@@ -14,8 +18,8 @@
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>$(WindowsTargetPlatformVersion)</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.17134.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ItemGroup Label="ProjectConfigurations">
@@ -46,7 +50,6 @@
   </ItemGroup>
   <PropertyGroup Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
@@ -64,7 +67,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <IncludePath>$(VC_IncludePath);$(UniversalCRT_IncludePath);$(WindowsSDK_IncludePath);$(SharedContentDir)\cppwinrt</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(UniversalCRT_IncludePath);$(WindowsSDK_IncludePath);$(SharedContentDir)\cppwinrt;$(GeneratedFilesDir)\styles</IncludePath>
     <CppWinRTOptimized>true</CppWinRTOptimized>
   </PropertyGroup>
   <ItemDefinitionGroup>
@@ -75,6 +78,7 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
       <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -112,6 +116,9 @@
     <ClInclude Include="$(SharedContentDir)\cppwinrt\MainPage.h">
       <DependentUpon>$(SharedContentDir)\xaml\MainPage.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="$(SharedContentDir)\cppwinrt\Styles.xaml.h">
+      <DependentUpon>$(SharedContentDir)\xaml\Styles.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="SampleConfiguration.h" />
     <ClInclude Include="Scenario1_Files.h">
       <DependentUpon>..\shared\Scenario1_Files.xaml</DependentUpon>
@@ -124,9 +131,6 @@
     </ClInclude>
     <ClInclude Include="Scenario4_CompositeSettings.h">
       <DependentUpon>..\shared\Scenario4_CompositeSettings.xaml</DependentUpon>
-    </ClInclude>
-    <ClInclude Include="Scenario5_Msappdata.h">
-      <DependentUpon>..\shared\Scenario5_Msappdata.xaml</DependentUpon>
     </ClInclude>
     <ClInclude Include="Scenario6_ClearScenario.h">
       <DependentUpon>..\shared\Scenario6_ClearScenario.xaml</DependentUpon>
@@ -147,7 +151,6 @@
     <Page Include="..\shared\Scenario2_Settings.xaml" />
     <Page Include="..\shared\Scenario3_SettingContainer.xaml" />
     <Page Include="..\shared\Scenario4_CompositeSettings.xaml" />
-    <Page Include="..\shared\Scenario5_Msappdata.xaml" />
     <Page Include="..\shared\Scenario6_ClearScenario.xaml" />
     <Page Include="..\shared\Scenario7_SetVersion.xaml" />
     <Page Include="$(SharedContentDir)\xaml\Styles.xaml">
@@ -160,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="$(SharedContentDir)\cppwinrt\MainPage.cpp">
       <DependentUpon>$(SharedContentDir)\xaml\MainPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="$(SharedContentDir)\cppwinrt\Styles.xaml.cpp">
+      <DependentUpon>$(SharedContentDir)\xaml\Styles.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="SampleConfiguration.cpp">
       <DependentUpon>SampleConfiguration.h</DependentUpon>
@@ -175,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="Scenario4_CompositeSettings.cpp">
       <DependentUpon>..\shared\Scenario4_CompositeSettings.xaml</DependentUpon>
-    </ClCompile>
-    <ClCompile Include="Scenario5_Msappdata.cpp">
-      <DependentUpon>..\shared\Scenario5_Msappdata.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="Scenario6_ClearScenario.cpp">
       <DependentUpon>..\shared\Scenario6_ClearScenario.xaml</DependentUpon>
@@ -196,6 +199,9 @@
   <ItemGroup>
     <Midl Include="$(SharedContentDir)\cppwinrt\MainPage.idl">
       <DependentUpon>$(SharedContentDir)\xaml\MainPage.xaml</DependentUpon>
+    </Midl>
+    <Midl Include="$(SharedContentDir)\cppwinrt\Styles.idl">
+      <DependentUpon>$(SharedContentDir)\xaml\Styles.xaml</DependentUpon>
     </Midl>
     <Midl Include="Project.idl" />
   </ItemGroup>
@@ -241,13 +247,13 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.targets')" />
+    <Import Project="packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.props'))" />
-    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.2.0.210629.4\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.3.0.260818.1\build\native\Microsoft.Windows.CppWinRT.targets'))" />
   </Target>
 </Project>
