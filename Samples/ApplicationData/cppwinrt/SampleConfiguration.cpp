@@ -29,7 +29,6 @@ IVector<Scenario> implementation::MainPage::scenariosInner = winrt::single_threa
     Scenario{ L"Settings", xaml_typename<SDKTemplate::Scenario2_Settings>() },
     Scenario{ L"Setting Containers", xaml_typename<SDKTemplate::Scenario3_SettingContainer>() },
     Scenario{ L"Composite Settings", xaml_typename<SDKTemplate::Scenario4_CompositeSettings>() },
-    Scenario{ L"ms-appdata:// Protocol", xaml_typename<SDKTemplate::Scenario5_Msappdata>() },
     Scenario{ L"Clear", xaml_typename<SDKTemplate::Scenario6_ClearScenario>() },
     Scenario{ L"SetVersion", xaml_typename<SDKTemplate::Scenario7_SetVersion>() },
 });
