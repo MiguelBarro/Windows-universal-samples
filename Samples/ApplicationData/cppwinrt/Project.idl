@@ -26,6 +26,12 @@ namespace SDKTemplate
     }
 
     [default_interface]
+    runtimeclass Scenario5_Msappdata : Windows.UI.Xaml.Controls.Page
+    {
+        Scenario5_Msappdata();
+    }
+
+    [default_interface]
     runtimeclass Scenario6_ClearScenario : Windows.UI.Xaml.Controls.Page
     {
         Scenario6_ClearScenario();
