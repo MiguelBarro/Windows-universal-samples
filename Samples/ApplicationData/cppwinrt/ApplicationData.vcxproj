@@ -132,6 +132,9 @@
     <ClInclude Include="Scenario4_CompositeSettings.h">
       <DependentUpon>..\shared\Scenario4_CompositeSettings.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="Scenario5_Msappdata.h">
+      <DependentUpon>..\shared\Scenario5_Msappdata.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="Scenario6_ClearScenario.h">
       <DependentUpon>..\shared\Scenario6_ClearScenario.xaml</DependentUpon>
     </ClInclude>
@@ -151,6 +154,7 @@
     <Page Include="..\shared\Scenario2_Settings.xaml" />
     <Page Include="..\shared\Scenario3_SettingContainer.xaml" />
     <Page Include="..\shared\Scenario4_CompositeSettings.xaml" />
+    <Page Include="..\shared\Scenario5_Msappdata.xaml" />
     <Page Include="..\shared\Scenario6_ClearScenario.xaml" />
     <Page Include="..\shared\Scenario7_SetVersion.xaml" />
     <Page Include="$(SharedContentDir)\xaml\Styles.xaml">
@@ -181,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="Scenario4_CompositeSettings.cpp">
       <DependentUpon>..\shared\Scenario4_CompositeSettings.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Scenario5_Msappdata.cpp">
+      <DependentUpon>..\shared\Scenario5_Msappdata.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="Scenario6_ClearScenario.cpp">
       <DependentUpon>..\shared\Scenario6_ClearScenario.xaml</DependentUpon>
@@ -234,9 +241,6 @@
     </Image>
     <Image Include="..\shared\Assets\appDataLocal.png">
       <Link>Assets\appDataLocal.png</Link>
-    </Image>
-    <Image Include="..\shared\Assets\appDataRoaming.png">
-      <Link>Assets\appDataRoaming.png</Link>
     </Image>
     <Image Include="..\shared\Assets\appDataTemp.png">
       <Link>Assets\appDataTemp.png</Link>

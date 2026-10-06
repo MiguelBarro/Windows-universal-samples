@@ -28,12 +28,12 @@
       <TextBlock TextWrapping="Wrap" Grid.Row="0" Style="{StaticResource BasicTextStyle}" HorizontalAlignment="Left">
          Composite settings are used to group multiple settings. It is useful
         for storing related settings or settings that always get changed
-        together. Note that these are treated as one atomic unit during roaming
+        together. Note that these are treated as one atomic unit during
         conflict resolution. 
         <LineBreak/>
         <LineBreak/>
          Use 
-        <Bold>Storage.ApplicationData.current.roamingSettings</Bold>
+        <Bold>Storage.ApplicationData.current.localSettings</Bold>
          and 
         <Bold>Windows.Storage.ApplicationDataCompositeValue</Bold>
          to read, write, and delete a composite setting. 
