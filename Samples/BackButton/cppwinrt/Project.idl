@@ -1,0 +1,15 @@
+namespace SDKTemplate
+{
+
+    [default_interface]
+    runtimeclass Scenario1 : Windows.UI.Xaml.Controls.Page
+    {
+        Scenario1();
+    }
+
+    [default_interface]
+    runtimeclass SecondaryPage : Windows.UI.Xaml.Controls.Page
+    {
+        SecondaryPage();
+    }
+}
