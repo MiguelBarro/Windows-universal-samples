@@ -74,4 +74,59 @@ namespace winrt::SDKTemplate::implementation
 
         return jsonObject.Stringify();
     }
+
+    event_token User::PropertyChanged(Windows::UI::Xaml::Data::PropertyChangedEventHandler const& handler)
+    {
+        return m_propertyChanged.add(handler);
+    }
+
+    void User::PropertyChanged(event_token const& token) noexcept
+    {
+        m_propertyChanged.remove(token);
+    }
+
+    void User::Id(hstring const& value)
+    {
+        if (m_id == value)
+            return;
+
+        m_id = value;
+        m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Id" });
+    }
+
+    void User::Phone(hstring const& value)
+    {
+        if (m_phone == value)
+            return;
+
+        m_phone = value;
+        m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Phone" });
+    }
+
+    void User::Name(hstring const& value)
+    {
+        if (m_name == value)
+            return;
+
+        m_name = value;
+        m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Name" });
+    }
+
+    void User::Timezone(double value)
+    {
+        if (m_timezone == value)
+            return;
+
+        m_timezone = value;
+        m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Timezone" });
+    }
+
+    void User::Verified(bool value)
+    {
+        if (m_verified == value)
+            return;
+
+        m_verified = value;
+        m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Verified" });
+    }
 }

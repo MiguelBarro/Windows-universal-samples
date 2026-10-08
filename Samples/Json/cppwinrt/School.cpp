@@ -44,4 +44,41 @@ namespace winrt::SDKTemplate::implementation
 
         return jsonObject;
     }
+
+    event_token School::PropertyChanged(Windows::UI::Xaml::Data::PropertyChangedEventHandler const& handler)
+    {
+        return m_propertyChanged.add(handler);
+    }
+
+    void School::PropertyChanged(event_token const& token) noexcept
+    {
+        m_propertyChanged.remove(token);
+    }
+
+    void School::Id(hstring const& value)
+    {
+        if (m_id != value)
+        {
+            m_id = value;
+            m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Id" });
+        }
+    }
+
+    void School::Name(hstring const& value)
+    {
+        if (m_name != value)
+        {
+            m_name = value;
+            m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Name" });
+        }
+    }
+
+    void School::Type(hstring const& value)
+    {
+        if (m_type != value)
+        {
+            m_type = value;
+            m_propertyChanged(*this, Windows::UI::Xaml::Data::PropertyChangedEventArgs{ L"Type" });
+        }
+    }
 }

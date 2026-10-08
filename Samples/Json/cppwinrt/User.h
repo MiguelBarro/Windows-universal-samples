@@ -25,17 +25,20 @@ namespace winrt::SDKTemplate::implementation
         User(hstring const& jsonString);
 
         hstring Id() { return m_id; }
-        void Id(hstring const& value) { m_id = value; }
+        void Id(hstring const& value);
         hstring Phone() { return m_phone; }
-        void Phone(hstring const& value) { m_phone = value; }
+        void Phone(hstring const& value);
         hstring Name() { return m_name; }
-        void Name(hstring const& value) { m_name = value; }
+        void Name(hstring const& value);
         Windows::Foundation::Collections::IObservableVector<SDKTemplate::School> Education() { return m_education; }
         double Timezone() { return m_timezone; }
-        void Timezone(double value) { m_timezone = value; }
+        void Timezone(double value);
         bool Verified() { return m_verified; }
-        void Verified(bool value) { m_verified = value; }
+        void Verified(bool value);
         hstring Stringify();
+
+        event_token PropertyChanged(winrt::Windows::UI::Xaml::Data::PropertyChangedEventHandler const& handler);
+        void PropertyChanged(event_token const& token) noexcept;
 
     private:
         static constexpr inline wchar_t idKey[] = L"id";
@@ -51,6 +54,8 @@ namespace winrt::SDKTemplate::implementation
         Windows::Foundation::Collections::IObservableVector<winrt::SDKTemplate::School> m_education = single_threaded_observable_vector<SDKTemplate::School>();
         double m_timezone = 0.0;
         bool m_verified = false;
+
+        event<Windows::UI::Xaml::Data::PropertyChangedEventHandler> m_propertyChanged;
     };
 }
 namespace winrt::SDKTemplate::factory_implementation

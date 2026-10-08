@@ -17,8 +17,7 @@ namespace SDKTemplate
         Scenario1_ParseAndStringify();
     }
 
-    [Windows.UI.Xaml.Data.Bindable]
-    runtimeclass School
+    runtimeclass School : Windows.UI.Xaml.Data.INotifyPropertyChanged
     {
         School();
         School(Windows.Data.Json.JsonObject jsonObject);
@@ -30,8 +29,7 @@ namespace SDKTemplate
         String Type;
     }
     
-    [Windows.UI.Xaml.Data.Bindable]
-    runtimeclass User
+    runtimeclass User : Windows.UI.Xaml.Data.INotifyPropertyChanged
     {
         User();
         User(String jsonString);

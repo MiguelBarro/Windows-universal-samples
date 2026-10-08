@@ -22,11 +22,14 @@ namespace winrt::SDKTemplate::implementation
         winrt::Windows::Data::Json::JsonObject ToJsonObject();
 
         hstring Id() { return m_id; }
-        void Id(hstring const& value) { m_id = value; }
+        void Id(hstring const& value);
         hstring Name() { return m_name; }
-        void Name(hstring const& value) { m_name = value; }
+        void Name(hstring const& value);
         hstring Type() { return m_type; }
-        void Type(hstring const& value) { m_type = value; }
+        void Type(hstring const& value);
+
+        winrt::event_token PropertyChanged(winrt::Windows::UI::Xaml::Data::PropertyChangedEventHandler const& handler);
+        void PropertyChanged(winrt::event_token const& token) noexcept;
 
     private:
         static constexpr inline wchar_t idKey[] = L"id";
@@ -37,6 +40,8 @@ namespace winrt::SDKTemplate::implementation
         hstring m_id;
         hstring m_name;
         hstring m_type;
+
+        event<Windows::UI::Xaml::Data::PropertyChangedEventHandler> m_propertyChanged;
     };
 }
 namespace winrt::SDKTemplate::factory_implementation
