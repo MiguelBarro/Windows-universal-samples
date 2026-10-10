@@ -1,0 +1,25 @@
+#pragma once
+
+#include <cstdint>
+#include <optional>
+#include <string>
+#include <vector>
+
+// Xaml generator introduces classic COM interfaces like IXamlUserType
+#include <unknwn.h>
+
+#include "winrt/Windows.ApplicationModel.Activation.h"
+#include "winrt/Windows.Data.Json.h"
+#include "winrt/Windows.Foundation.Collections.h"
+#include "winrt/Windows.Storage.h"
+#include "winrt/Windows.System.h"
+#include "winrt/Windows.UI.Core.h"
+#include "winrt/Windows.UI.Input.h"
+#include "winrt/Windows.UI.Xaml.Automation.Peers.h"
+#include "winrt/Windows.UI.Xaml.Controls.Primitives.h"
+#include "winrt/Windows.UI.Xaml.Documents.h"
+#include "winrt/Windows.UI.Xaml.Input.h"
+#include "winrt/Windows.UI.Xaml.Interop.h"
+#include "winrt/Windows.UI.Xaml.Markup.h"
+#include "winrt/Windows.UI.Xaml.Media.h"
+#include "winrt/Windows.UI.Xaml.Navigation.h"

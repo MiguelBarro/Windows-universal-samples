@@ -1,0 +1,37 @@
+namespace SDKTemplate
+{
+    [default_interface]
+    runtimeclass Item : Windows.Foundation.IStringable
+    {
+        Item(String name, Int32 taps);
+        Item(Windows.Data.Json.JsonObject state);
+
+        Windows.Data.Json.JsonObject ToJsonObject();
+
+        String Name;
+        Int32 Taps;
+    }
+
+    [default_interface]
+    runtimeclass Scenario_Suspension : Windows.UI.Xaml.Controls.Page
+    {
+        Scenario_Suspension();
+
+        void ListView_ItemClick(Object sender, Windows.UI.Xaml.Controls.ItemClickEventArgs e);
+        void AddItem();
+        void ResetItems();
+
+        Windows.Data.Json.JsonObject SaveState();
+        void RestoreState(Windows.Data.Json.JsonObject state);
+
+        Windows.Foundation.Collections.IObservableVector<Item> Items { get; };
+    }
+
+    [default_interface]
+    runtimeclass SubPage : Windows.UI.Xaml.Controls.Page
+    {
+        SubPage();
+
+        void Page_Tapped(Object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e);
+    }
+}
