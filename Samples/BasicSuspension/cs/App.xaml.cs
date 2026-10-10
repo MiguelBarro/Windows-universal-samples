@@ -27,6 +27,7 @@ namespace SDKTemplate
             this.InitializeComponent();
             SuspensionManager.KnownTypes.AddRange(new[] { typeof(ItemList), typeof(Item) });
             this.Suspending += OnSuspending;
+            this.Resuming += OnResuming;
         }
 
         /// <summary>
@@ -51,25 +52,25 @@ namespace SDKTemplate
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                // If this is not the first time the app is run, then restore from the previous session.
-                StorageFile file;
-                try
-                {
-                    file = await ApplicationData.Current.LocalFolder.GetFileAsync(sessionStateFilename);
-                }
-                catch (Exception)
-                {
-                    file = null;
-                }
-
-                if (file != null)
-                {
-                    //Load state from previously suspended application
-                    await SuspensionManager.RestoreAsync();
-                }
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+            }
+
+            // If this is not the first time the app is run, then restore from the previous session.
+            StorageFile file;
+            try
+            {
+                file = await ApplicationData.Current.LocalFolder.GetFileAsync(sessionStateFilename);
+            }
+            catch (Exception)
+            {
+                file = null;
+            }
+
+            if (file != null && e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+            {
+                //Load state from previously terminated application
+                await SuspensionManager.RestoreAsync();
             }
 
             if (rootFrame.Content == null)
@@ -107,6 +108,11 @@ namespace SDKTemplate
             // Save application state and stop any background activity.
             await SuspensionManager.SaveAsync();
             deferral.Complete();
+        }
+
+        private async void OnResuming(object sender, object e)
+        {
+            // Update cloud info or restore connections
         }
     }
 }
