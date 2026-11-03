@@ -1,0 +1,38 @@
+namespace SDKTemplate
+{
+    [default_interface]
+    runtimeclass SampleBackgroundTask : Windows.UI.Xaml.Controls.Page
+    {
+        SampleBackgroundTask();
+    }
+
+    [default_interface]
+    runtimeclass SampleBackgroundTaskWithCondition : Windows.UI.Xaml.Controls.Page
+    {
+        SampleBackgroundTaskWithCondition();
+    }
+
+    [default_interface]
+    runtimeclass ServicingCompleteTask : Windows.UI.Xaml.Controls.Page
+    {
+        ServicingCompleteTask();
+    }
+
+    [default_interface]
+    runtimeclass TimeTriggeredTask : Windows.UI.Xaml.Controls.Page
+    {
+        TimeTriggeredTask();
+    }
+
+    [default_interface]
+    runtimeclass ApplicationTriggerTask : Windows.UI.Xaml.Controls.Page
+    {
+        ApplicationTriggerTask();
+    }
+
+    [default_interface]
+    runtimeclass GroupedBackgroundTask : Windows.UI.Xaml.Controls.Page
+    {
+        GroupedBackgroundTask();
+    }
+}
