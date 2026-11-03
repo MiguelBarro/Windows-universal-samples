@@ -1,0 +1,14 @@
+namespace Tasks
+{
+    [default_interface]
+    runtimeclass SampleBackgroundTask : Windows.ApplicationModel.Background.IBackgroundTask
+    {
+        SampleBackgroundTask();
+    }
+
+    [default_interface]
+    runtimeclass ServicingComplete : Windows.ApplicationModel.Background.IBackgroundTask
+    {
+        ServicingComplete();
+    }
+}
