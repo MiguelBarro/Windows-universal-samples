@@ -300,10 +300,10 @@ FileLoggingSessionScenario::CloseSessionSaveFinalLogFile()
         fullPath += logFileName;
 
         StorageFile movedFile = co_await StorageFile::GetFileFromPathAsync(hstring(fullPath));
-        return movedFile;
+        co_return movedFile;
     }
 
-    return nullptr;
+    co_return nullptr;
 }
 
 void
