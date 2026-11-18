@@ -102,7 +102,9 @@
       <DependentUpon>$(SharedContentDir)\xaml\Styles.xaml</DependentUpon>
     </ClInclude>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="SampleConfiguration.h" />
+    <ClInclude Include="BackgroundTaskSample.h" />
     <ClInclude Include="Scenario1_SampleBackgroundTask.h">
       <DependentUpon>..\..\shared\Scenario1_SampleBackgroundTask.xaml</DependentUpon>
     </ClInclude>

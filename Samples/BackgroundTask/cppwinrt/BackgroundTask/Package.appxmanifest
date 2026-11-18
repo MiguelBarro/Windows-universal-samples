@@ -20,6 +20,19 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="BackgroundTask.App">
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="Tasks.SampleBackgroundTask">
+          <BackgroundTasks>
+            <Task Type="systemEvent" />
+            <Task Type="timer" />
+          </BackgroundTasks>
+        </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="Tasks.ServicingComplete">
+          <BackgroundTasks>
+            <Task Type="systemEvent"/>
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
       <uap:VisualElements
         DisplayName="Background Tasks C++/WinRT Sample"
         Square150x150Logo="Assets\squareTile-sdk.png"
@@ -34,19 +47,6 @@
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
       </uap:VisualElements>
-      <Extensions>
-        <Extension Category="windows.backgroundTasks" EntryPoint="Tasks.SampleBackgroundTask">
-          <BackgroundTasks>
-            <Task Type="systemEvent" />
-            <Task Type="timer" />
-          </BackgroundTasks>
-        </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="Tasks.ServicingComplete">
-          <BackgroundTasks>
-            <Task Type="systemEvent"/>
-          </BackgroundTasks>
-        </Extension>
-      </Extensions>
     </Application>
   </Applications>
 </Package>

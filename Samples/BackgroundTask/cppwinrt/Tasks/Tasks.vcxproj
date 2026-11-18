@@ -91,6 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="SampleBackgroundTask.h" />
     <ClInclude Include="ServicingComplete.h" />
   </ItemGroup>
